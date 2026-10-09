@@ -1,0 +1,185 @@
+import { chromium } from 'playwright';
+import assert from 'node:assert/strict';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+
+const reference = JSON.parse(await readFile('data/reference.json', 'utf8'));
+const sampleRune = reference.runes.find(rune => rune.pro);
+const browser = await chromium.launch({ channel: process.env.PLAYWRIGHT_CHANNEL || 'chromium' });
+const log = [];
+await mkdir('.impeccable/review', { recursive: true });
+await mkdir('docs/screenshots', { recursive: true });
+try {
+  for (const [width, height] of [[1280, 800], [840, 800], [400, 820], [360, 480]]) {
+    const narrow = width < 700;
+    const context = await browser.newContext({ viewport: { width, height }, permissions: ['clipboard-read', 'clipboard-write'] });
+    const page = await context.newPage(), errors = [];
+    page.on('pageerror', error => errors.push(error.message));
+    page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
+    const nav = page.getByRole('navigation', { name: '主导航' });
+    const category = page.getByRole('group', { name: '图鉴分类' });
+    const workspace = () => page.locator('.reference-container:visible .reference-workspace');
+    const assertNoOverflow = async () => {
+      const overflowing = await page.evaluate(() => [...document.querySelectorAll('body,.titlebar,.primary-nav,.catalog-types,.mechanics-directory,.mechanics-content,.reference-toolbar,.reference-list,.reference-detail,.reference-table')]
+        .filter(element => element.getClientRects().length && element.scrollWidth > element.clientWidth + 1)
+        .map(element => `${element.className}: ${element.scrollWidth}/${element.clientWidth}`));
+      assert.deepEqual(overflowing, [], `${width}: horizontal overflow`);
+    };
+    const capture = async (surface, aliases = []) => {
+      await assertNoOverflow();
+      if (process.env.TEST_SCREENSHOTS === '0') return;
+      await page.evaluate(() => document.fonts.ready);
+      const path = `.impeccable/review/${surface}-${width}x${height}.png`;
+      await page.screenshot({ path, animations: 'disabled', fullPage: true });
+      for (const alias of aliases) await page.screenshot({ path: `.impeccable/review/${alias}.png`, animations: 'disabled', fullPage: true });
+    };
+    const topic = async id => {
+      if (narrow) await page.getByRole('combobox', { name: '选择机制主题' }).selectOption(id);
+      else {
+        const titles = { quality: '福佑抽取', costs: '重随与重铸', runes: '符文选择', events: '随机事件', basic: '基础玩法' };
+        await page.getByRole('group', { name: '机制主题' }).getByRole('button', { name: titles[id], exact: true }).click();
+      }
+    };
+    await page.goto('http://127.0.0.1:5173');
+    await page.locator('.item-row').first().waitFor();
+    assert.equal(await nav.getByRole('button').count(), 5);
+    await page.getByRole('searchbox', { name: '搜索福佑', exact: true }).fill('gsx');
+    await page.locator('.item-row').click();
+    await page.getByRole('button', { name: '查看抽取规则', exact: true }).click();
+    await page.getByRole('heading', { name: '福佑抽取', exact: true }).waitFor();
+    const third = page.locator('.quality-table tbody tr').nth(2);
+    assert((await third.textContent()).includes('17.6%47.1%35.3%'));
+    assert.equal(await page.locator('.quality-table tbody tr').count(), 7);
+    await capture('mechanics', width === 1280 ? ['desktop'] : width === 400 ? ['mobile'] : []);
+    await page.getByRole('button', { name: '返回福佑', exact: true }).click();
+    assert.equal(await page.getByRole('searchbox', { name: '搜索福佑', exact: true }).inputValue(), 'gsx');
+    assert.equal(await page.locator('.item.selected').getAttribute('id'), 'item-10006');
+    if (narrow) assert.equal(await page.locator('#item-10006 .expanded').count(), 1);
+
+    await nav.getByRole('button', { name: '机制', exact: true }).click();
+    await topic('costs');
+    const costs = page.getByRole('group', { name: '消耗操作' });
+    for (const [name, count] of [['刷新英雄', 6], ['重随福佑', 8], ['重铸福佑', 6]]) {
+      await costs.getByRole('button', { name, exact: true }).click();
+      assert.equal(await page.locator('.cost-table tbody tr').count(), count);
+    }
+    await topic('basic');
+    const growth = page.locator('.mechanics-section').filter({ has: page.getByRole('heading', { name: '生命与魔法上限成长', exact: true }) });
+    assert((await growth.locator('tbody tr').last().textContent()).endsWith('00'));
+    await assertNoOverflow();
+    await page.getByRole('searchbox', { name: '查找机制主题' }).fill('MID_START_GOLD');
+    assert.equal(await page.getByRole('group', { name: '机制主题' }).getByRole('button').count(), 1);
+    await page.getByRole('searchbox', { name: '查找机制主题' }).fill('');
+    await topic('runes');
+    await page.getByRole('slider', { name: '符文重随次数', exact: true }).fill('20');
+    assert((await page.locator('.mechanics-content').textContent()).includes('7.0 倍'));
+    await page.getByRole('button', { name: '查看 36 条符文', exact: true }).click();
+    assert.equal(await workspace().locator('.reference-row').count(), 36);
+    await workspace().getByRole('searchbox', { name: '搜索符文' }).fill(sampleRune.id);
+    await page.waitForFunction(() => document.querySelectorAll('.reference-container:not([hidden]) .reference-row').length === 1);
+    assert.equal(await workspace().locator('.reference-row').count(), 1);
+    await workspace().locator('.reference-row').click();
+    if (narrow) await workspace().locator('.reference-detail-content').waitFor();
+    await capture('runes');
+    await workspace().getByRole('button', { name: '复制资料', exact: true }).click();
+    assert((await page.evaluate(() => navigator.clipboard.readText())).startsWith(sampleRune.name));
+    await workspace().getByRole('button', { name: '查看符文选择机制', exact: true }).click();
+    await page.getByRole('button', { name: '返回符文', exact: true }).click();
+    assert.equal(await workspace().getByRole('searchbox', { name: '搜索符文' }).inputValue(), sampleRune.id);
+    await workspace().getByRole('button', { name: '查看包含它的候选池', exact: true }).click();
+    assert.equal(await workspace().locator('.reference-row').count(), reference.pools.filter(pool => pool.entries.some(entry => entry.rune === sampleRune.id)).length);
+    await workspace().getByRole('searchbox', { name: '搜索候选池' }).fill('');
+    await page.waitForFunction(() => document.querySelectorAll('.reference-container:not([hidden]) .reference-row').length === 69);
+    assert.equal(await workspace().locator('.reference-row').count(), 69);
+    const selectedPool = reference.pools.find(pool => pool.entries.some(entry => entry.chance === 10));
+    await workspace().getByRole('searchbox', { name: '搜索候选池' }).fill(selectedPool.name);
+    await workspace().locator('.reference-row').click();
+    await workspace().getByRole('slider', { name: '候选池重随次数' }).fill('20');
+    const candidate = selectedPool.entries.find(entry => entry.chance === 10);
+    const candidateName = reference.runes.find(rune => rune.id === candidate.rune).name;
+    const candidateRow = workspace().locator('.pool-table tbody tr').filter({ hasText: candidateName });
+    assert((await candidateRow.textContent()).endsWith('1070'));
+    await assertNoOverflow();
+    await candidateRow.getByRole('button', { name: candidateName, exact: true }).click();
+    assert.equal(await workspace().locator('.reference-detail-content h2').textContent(), candidateName);
+    await workspace().getByRole('searchbox', { name: '搜索符文' }).fill('unmatched-reference');
+    await workspace().getByRole('button', { name: '清除资料筛选' }).click();
+    assert.equal(await workspace().locator('.reference-row').count(), 36);
+    const views = workspace().getByRole('group', { name: '符文资料视图' });
+    await views.getByRole('button', { name: '英雄对照 125', exact: true }).click();
+    assert.equal(await workspace().locator('.reference-row').count(), 125);
+    const heroFilter = workspace().getByRole('group', { name: '英雄符文池状态' });
+    await heroFilter.getByRole('button', { name: '有符文池', exact: true }).click();
+    assert.equal(await workspace().locator('.reference-row').count(), 113);
+    await heroFilter.getByRole('button', { name: '未配置符文池', exact: true }).click();
+    assert.equal(await workspace().locator('.reference-row').count(), 12);
+    await workspace().getByRole('searchbox', { name: '搜索英雄对照' }).fill('wisp');
+    await workspace().locator('.reference-row').click();
+    assert.equal(await workspace().locator('.hero-config-table tbody tr').first().locator('td').textContent(), '0');
+    assert((await workspace().locator('.reference-detail-content').textContent()).includes('未配置符文池'));
+    await heroFilter.getByRole('button', { name: '全部', exact: true }).click();
+    const hero = reference.heroes.find(record => record.id === 'abaddon');
+    await workspace().getByRole('searchbox', { name: '搜索英雄对照' }).fill(hero.pyInitials);
+    assert((await workspace().locator('.reference-row').count()) > 0);
+    await workspace().getByRole('searchbox', { name: '搜索英雄对照' }).fill(hero.name);
+    assert.equal(await workspace().locator('.reference-row').count(), 1);
+    await workspace().locator('.reference-row').click();
+    assert.equal(await workspace().locator('.hero-attrs-table tbody tr').last().locator('td').textContent(), '-20');
+    await capture('heroes');
+    await workspace().getByRole('button', { name: `查看${reference.pools.find(pool => pool.id === hero.poolId).name}`, exact: true }).click();
+    assert.equal(await workspace().locator('.reference-detail-content h2').textContent(), reference.pools.find(pool => pool.id === hero.poolId).name);
+    await workspace().locator('.pool-hero-section').getByRole('button', { name: hero.name, exact: true }).click();
+    assert.equal(await workspace().locator('.reference-detail-content h2').textContent(), hero.name);
+    await workspace().getByRole('searchbox', { name: '搜索英雄对照' }).fill('bounty_hunter');
+    await workspace().locator('.reference-row').click();
+    const bounty = reference.heroes.find(record => record.id === 'bounty_hunter');
+    await workspace().getByRole('button', { name: `查看${reference.pools.find(pool => pool.id === bounty.poolId).name}`, exact: true }).click();
+    assert((await workspace().locator('.reference-entry-meta').textContent()).includes('1 条符文'));
+    assert.equal(await workspace().locator('.pool-table tbody tr').count(), 1);
+    assert((await workspace().locator('.pool-table').textContent()).includes('盗圣'));
+    if (narrow) {
+      const titleBounds = await workspace().locator('.reference-detail-content h2').boundingBox();
+      assert(titleBounds.y >= 0 && titleBounds.y < height, 'A hero-to-pool jump must reveal its selected detail');
+    }
+    await capture('pools');
+    await views.getByRole('button', { name: '符文 36', exact: true }).click();
+    assert.equal(await workspace().locator('.reference-row').count(), 36);
+    const referenceList = workspace().locator('.reference-list');
+    await referenceList.evaluate(element => { element.scrollTop = element.scrollHeight; });
+    const position = await referenceList.evaluate(element => element.scrollTop);
+    await category.getByRole('button', { name: '随机事件', exact: true }).click();
+    assert.equal(await workspace().locator('.reference-row').count(), 21);
+    const eventFilter = workspace().getByRole('group', { name: '事件权重' });
+    await eventFilter.getByRole('button', { name: '权重为 0', exact: true }).click();
+    assert.equal(await workspace().locator('.reference-row').count(), reference.events.filter(event => event.weight === 0).length);
+    await eventFilter.getByRole('button', { name: '无权重', exact: true }).click();
+    assert.equal(await workspace().locator('.reference-row').count(), 2);
+    await workspace().locator('.reference-row').first().click();
+    assert((await workspace().locator('.reference-entry-meta').textContent()).includes('—'));
+    await capture('events');
+    await workspace().getByRole('button', { name: '查看事件发生规则', exact: true }).click();
+    assert((await page.locator('.mechanics-content').textContent()).includes('70%'));
+    assert((await page.locator('.mechanics-content').textContent()).includes('30%'));
+    await page.getByRole('button', { name: '返回事件', exact: true }).click();
+    assert.equal(await workspace().locator('.reference-row').count(), 2);
+    await category.getByRole('button', { name: '符文', exact: true }).click();
+    assert.equal(await referenceList.evaluate(element => element.scrollTop), position);
+    await workspace().getByRole('searchbox', { name: '搜索符文' }).fill(candidate.rune);
+    await page.reload();
+    await category.getByRole('button', { name: '符文', exact: true }).click();
+    assert.equal(await workspace().getByRole('searchbox', { name: '搜索符文' }).inputValue(), candidate.rune);
+    await nav.getByRole('button', { name: '模拟器', exact: true }).click();
+    await page.getByRole('textbox', { name: '搜索模拟福佑' }).fill('攻速鞋');
+    await page.locator('.sim-results button').first().click();
+    await page.getByRole('spinbutton', { name: '模拟移动速度', exact: true }).fill('300');
+    await page.getByRole('button', { name: '查看抽取与重铸规则', exact: true }).click();
+    await page.getByRole('button', { name: '返回模拟器', exact: true }).click();
+    assert.equal(await page.getByRole('textbox', { name: '搜索模拟福佑' }).inputValue(), '攻速鞋');
+    assert.equal(await page.getByRole('spinbutton', { name: '模拟移动速度', exact: true }).inputValue(), '300');
+    await assertNoOverflow();
+    assert.deepEqual(errors, []);
+    log.push(`PASS ${width}x${height}: 36 runes / 69 pools / 125 heroes (113 configured, 12 unconfigured) / 21 events; Chinese and pinyin hero lookup; hero-pool links; extra exclusive pool; missing vs zero; quality normalization; 6/8/6 cost rows; zero growth; capped rune judgement; copy; reference links; preserved query, selection and scroll; reload persistence; no overflow or console errors.`);
+    await context.close();
+  }
+} finally { await browser.close(); }
+console.log(log.join('\n'));
+await writeFile('docs/screenshots/reference-acceptance.txt', log.join('\n') + '\n');

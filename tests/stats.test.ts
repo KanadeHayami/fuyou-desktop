@@ -1,0 +1,34 @@
+import { expect, it } from 'vitest';
+import data from '../data/fuyou.json';
+import { initialCapture } from '../src/shared/capture';
+import { blessingStats } from '../src/shared/stats';
+import { rollRanges } from '../src/shared/rolls';
+it('keeps percent and flat stats separate and totals only supported effects', () => {
+  const state = initialCapture();
+  state.rows = ['10027a','10040a','10043','10045','10008','10099','10046','10104'].map(id => ({ id, raw: id, candidates: [id] }));
+  const result = blessingStats(state, data.items);
+  const value = (key: string) => result.stats.find(s => s.key === key)?.value;
+  expect(value('damage')).toBe(29.5);
+  expect(value('taken')).toBe(42);
+  expect(value('spell')).toBe(18);
+  expect(value('range')).toBe(135);
+  expect(value('speed')).toBe(160);
+  expect(value('speedPercent')).toBe(36);
+  expect(value('attack')).toBe(112.5);
+  expect(value('health')).toBe(3900);
+  expect(value('healthPercent')).toBe(21);
+});
+it('preserves unknowns, conditional effects, overrides, duplicate IDs and range conflicts', () => {
+  const state = initialCapture();
+  expect(blessingStats(state, data.items).stats.every(s => s.value === undefined)).toBe(true);
+  state.rows = ['10006','10006','10001','10021','10041'].map(id => ({ id, raw: id, candidates: [id] }));
+  state.movement = 300;
+  const index = rollRanges(data.items.find(i => i.id === '10041')!.plain)[0].index;
+  state.values['10041'] = { [index]: 120 };
+  const result = blessingStats(state, data.items);
+  expect(result.stats.find(s => s.key === 'range')?.value).toBe(120);
+  expect(result.stats.find(s => s.key === 'speed')?.value).toBe(27);
+  expect(result.stats.find(s => s.key === 'taken')?.value).toBeUndefined();
+  expect(result.fixedRange).toBe(true);
+  expect(result.uncovered).toContain('10021');
+});

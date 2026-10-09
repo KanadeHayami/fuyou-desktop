@@ -1,0 +1,67 @@
+{
+  "name": "fuyou-desktop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "福佑大乱斗小助手 · 离线图鉴",
+  "author": "Fuyou",
+  "main": "out/main/index.js",
+  "scripts": {
+    "build:data": "node scripts/build-data.mjs",
+    "build:reference": "node scripts/build-reference-data.mjs",
+    "import:reference-icons": "node scripts/import-reference-icons.mjs",
+    "dev:web": "vite --host 127.0.0.1",
+    "dev": "electron-vite dev",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:ui": "node scripts/acceptance.mjs",
+    "test:reference": "node scripts/reference-acceptance.mjs",
+    "test:privacy": "node scripts/reference-privacy.mjs",
+    "test:localization": "node scripts/rune-localization.mjs",
+    "test:reference-icons": "node scripts/reference-icons.mjs",
+    "test:electron": "node scripts/electron-smoke.mjs",
+    "test:live": "node scripts/live-ui.mjs",
+    "build": "electron-vite build",
+    "dist": "npm run build && electron-builder --win nsis --x64"
+  },
+  "build": {
+    "appId": "cn.fuyou.desktop",
+    "productName": "福佑大乱斗小助手",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "out/**/*",
+      "package.json"
+    ],
+    "win": {
+      "icon": "resources/app.ico",
+      "target": "nsis",
+      "artifactName": "Fuyou-Setup-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    },
+    "asarUnpack": [
+      "out/renderer/capture-worker.ps1",
+      "out/renderer/roster-ocr.ps1"
+    ]
+  },
+  "dependencies": {
+    "@fontsource/barlow-semi-condensed": "^5.3.0",
+    "preact": "^10.29.8"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "csv-parse": "^7.0.3",
+    "electron": "^44.4.5",
+    "electron-builder": "^26.15.3",
+    "electron-vite": "^5.0.0",
+    "pinyin-pro": "^3.29.4",
+    "playwright": "^1.63.0",
+    "typescript": "^7.0.2",
+    "vite": "^7.3.6",
+    "vitest": "^5.0.2"
+  }
+}

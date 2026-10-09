@@ -1,0 +1,6 @@
+node_modules/
+out/
+release/
+.impeccable/
+docs/screenshots/*
+!docs/screenshots/.gitkeep

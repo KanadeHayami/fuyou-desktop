@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>视觉规范</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&amp;family=Barlow+Semi+Condensed:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0B0B0D;font-family:'Noto Sans SC','Microsoft YaHei UI',sans-serif;color:#EEECE7}
+:root{--num:'Barlow Semi Condensed','Noto Sans SC',sans-serif}
+button{font-family:inherit}
+</style>
+</helmet>
+<div style="width: 1280px; height: 760px; box-sizing: border-box; padding: 44px 56px; display: flex; flex-direction: column; gap: 32px; background: #111114; font-family: 'Noto Sans SC', 'Microsoft YaHei UI', sans-serif; color: #EEECE7">
+
+<div style="display: flex; align-items: baseline; gap: 20px">
+<h1 style="margin: 0; font-size: 26px; font-weight: 700">视觉规范</h1>
+<span style="font-size: 14px; color: #A9A6AE">石墨中性底 · 颜色只留给品质与数值 · 实拍与插画共用一套图标框</span>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; flex-grow: 1; min-height: 0">
+
+<section style="display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0 0 2px; font-size: 12px; font-weight: 500; color: #86838C; letter-spacing: 0.12em">表面</h2>
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 22px; height: 22px; border-radius: 5px; background: #0F0F12; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12)"></span><span style="font-size: 13px; flex-grow: 1">标题栏</span><span style="font-family: var(--num); font-size: 13px; color: #86838C">#0F0F12</span></div>
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 22px; height: 22px; border-radius: 5px; background: #141417; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12)"></span><span style="font-size: 13px; flex-grow: 1">窗口底</span><span style="font-family: var(--num); font-size: 13px; color: #86838C">#141417</span></div>
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 22px; height: 22px; border-radius: 5px; background: #1A1A1F; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12)"></span><span style="font-size: 13px; flex-grow: 1">条目 / 控件底</span><span style="font-family: var(--num); font-size: 13px; color: #86838C">#1A1A1F</span></div>
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 22px; height: 22px; border-radius: 5px; background: #26262D; box-shadow: inset 0 0 0 1px rgba(238,236,231,0.45)"></span><span style="font-size: 13px; flex-grow: 1">选中（加骨白描边）</span><span style="font-family: var(--num); font-size: 13px; color: #86838C">#26262D</span></div>
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 22px; height: 22px; border-radius: 5px; background: #2C2C33; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12)"></span><span style="font-size: 13px; flex-grow: 1">激活分段</span><span style="font-family: var(--num); font-size: 13px; color: #86838C">#2C2C33</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0 0 2px; font-size: 12px; font-weight: 500; color: #86838C; letter-spacing: 0.12em">文字</h2>
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 22px; height: 22px; border-radius: 5px; background: #EEECE7"></span><span style="font-size: 13px; flex-grow: 1">主文字 · 骨白</span><span style="font-family: var(--num); font-size: 13px; color: #86838C">#EEECE7</span></div>
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 22px; height: 22px; border-radius: 5px; background: #A9A6AE"></span><span style="font-size: 13px; flex-grow: 1; color: #A9A6AE">次要文字</span><span style="font-family: var(--num); font-size: 13px; color: #86838C">#A9A6AE</span></div>
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 22px; height: 22px; border-radius: 5px; background: #86838C"></span><span style="font-size: 13px; flex-grow: 1; color: #86838C">注释 / 标签</span><span style="font-family: var(--num); font-size: 13px; color: #86838C">#86838C</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0 0 2px; font-size: 12px; font-weight: 500; color: #86838C; letter-spacing: 0.12em">语义色</h2>
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 22px; height: 22px; border-radius: 5px; background: #72E0B4"></span><span style="font-size: 13px; flex-grow: 1">数值 · 对应游戏内绿色数字</span><span style="font-family: var(--num); font-size: 13px; color: #86838C">#72E0B4</span></div>
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 22px; height: 22px; border-radius: 5px; background: #FF9E45"></span><span style="font-size: 13px; flex-grow: 1; color: #FF9E45">橙色品质</span><span style="font-family: var(--num); font-size: 13px; color: #86838C">#FF9E45</span></div>
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 22px; height: 22px; border-radius: 5px; background: #B996FF"></span><span style="font-size: 13px; flex-grow: 1; color: #B996FF">紫色品质</span><span style="font-family: var(--num); font-size: 13px; color: #86838C">#B996FF</span></div>
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 22px; height: 22px; border-radius: 5px; background: #66B2FF"></span><span style="font-size: 13px; flex-grow: 1; color: #66B2FF">蓝色品质</span><span style="font-family: var(--num); font-size: 13px; color: #86838C">#66B2FF</span></div>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 11.5px; color: #86838C">名称 · Noto Sans SC 700 / 24</span>
+<span style="font-size: 24px; font-weight: 700; letter-spacing: 0.01em">一支穿云箭</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 11.5px; color: #86838C">正文 · 400 / 15，行高 1.85；数值嵌入正文时换数字字体</span>
+<p style="margin: 0; font-size: 15px; line-height: 1.85; color: #E4E2DC">阵亡时，自身和随机一名友方英雄获得 <span style="font-family: var(--num); font-size: 16.5px; font-weight: 600; color: #72E0B4">500~1000</span> 金币和 <span style="font-family: var(--num); font-size: 16.5px; font-weight: 600; color: #72E0B4">500</span> 经验，最多 <span style="font-family: var(--num); font-size: 16.5px; font-weight: 600; color: #72E0B4">8</span> 次。</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 11.5px; color: #86838C">数值 · Barlow Semi Condensed 600，等宽数字</span>
+<div style="display: flex; align-items: baseline; gap: 20px">
+<span style="font-family: var(--num); font-size: 30px; font-weight: 600; color: #72E0B4; font-variant-numeric: tabular-nums">+658.94</span>
+<span style="font-family: var(--num); font-size: 19px; font-weight: 600; color: #72E0B4; font-variant-numeric: tabular-nums">15 – 30</span>
+<span style="font-family: var(--num); font-size: 15px; font-weight: 600; color: #72E0B4">200–400</span>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 11.5px; color: #86838C">分组标签 · 12 / 字距 0.12em</span>
+<div style="display: flex; gap: 24px; font-size: 12px; font-weight: 500; color: #86838C; letter-spacing: 0.12em"><span>效果</span><span>数值区间</span><span>详情</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 11.5px; color: #86838C">键盘优先 · 窄窗时也不需要鼠标找搜索框</span>
+<div style="display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #A9A6AE">
+<kbd style="font-family: var(--num); font-size: 12px; line-height: 20px; padding: 0 7px; border: 1px solid rgba(255,255,255,0.14); border-bottom-width: 2px; border-radius: 4px; color: #D8D6D0">Ctrl K</kbd><span>聚焦搜索</span>
+<kbd style="font-family: var(--num); font-size: 12px; line-height: 20px; padding: 0 7px; border: 1px solid rgba(255,255,255,0.14); border-bottom-width: 2px; border-radius: 4px; color: #D8D6D0; margin-left: 8px">↑ ↓</kbd><span>切换</span>
+<kbd style="font-family: var(--num); font-size: 12px; line-height: 20px; padding: 0 7px; border: 1px solid rgba(255,255,255,0.14); border-bottom-width: 2px; border-radius: 4px; color: #D8D6D0; margin-left: 8px">Esc</kbd><span>清空</span>
+</div>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 11.5px; color: #86838C">同一套框：实拍梗图与幻想插画并列</span>
+<div style="display: flex; gap: 10px">
+<div style="position: relative; width: 56px; height: 56px; border-radius: 8px; overflow: hidden"><img src="/_blob/2db92353b875f7561a8987ac6d13f577" alt="一支穿云箭" style="width: 56px; height: 56px; display: block; object-fit: cover"><div style="position: absolute; inset: 0; border-radius: 8px; box-shadow: inset 0 0 0 1px rgba(255,158,69,0.62), inset 0 -16px 16px -12px rgba(0,0,0,0.6)"></div><div style="position: absolute; top: 0; left: 0; width: 13px; height: 13px; clip-path: polygon(0 0, 100% 0, 0 100%); background: #FF9E45"></div></div>
+<div style="position: relative; width: 56px; height: 56px; border-radius: 8px; overflow: hidden"><img src="/_blob/685a3e5c9fcc864af7b40d63bf4d9260" alt="超级分裂箭" style="width: 56px; height: 56px; display: block; object-fit: cover"><div style="position: absolute; inset: 0; border-radius: 8px; box-shadow: inset 0 0 0 1px rgba(255,158,69,0.62), inset 0 -16px 16px -12px rgba(0,0,0,0.6)"></div><div style="position: absolute; top: 0; left: 0; width: 13px; height: 13px; clip-path: polygon(0 0, 100% 0, 0 100%); background: #FF9E45"></div></div>
+<div style="position: relative; width: 56px; height: 56px; border-radius: 8px; overflow: hidden"><img src="/_blob/f27ddc9843bf18ac6d4e434e49288fa1" alt="攻速鞋" style="width: 56px; height: 56px; display: block; object-fit: cover"><div style="position: absolute; inset: 0; border-radius: 8px; box-shadow: inset 0 0 0 1px rgba(185,150,255,0.62), inset 0 -16px 16px -12px rgba(0,0,0,0.6)"></div><div style="position: absolute; top: 0; left: 0; width: 13px; height: 13px; clip-path: polygon(0 0, 100% 0, 0 100%); background: #B996FF"></div></div>
+<div style="position: relative; width: 56px; height: 56px; border-radius: 8px; overflow: hidden"><img src="/_blob/7492e0fcc6d75131747b1f60dd807438" alt="受虐狂" style="width: 56px; height: 56px; display: block; object-fit: cover"><div style="position: absolute; inset: 0; border-radius: 8px; box-shadow: inset 0 0 0 1px rgba(185,150,255,0.62), inset 0 -16px 16px -12px rgba(0,0,0,0.6)"></div><div style="position: absolute; top: 0; left: 0; width: 13px; height: 13px; clip-path: polygon(0 0, 100% 0, 0 100%); background: #B996FF"></div></div>
+<div style="position: relative; width: 56px; height: 56px; border-radius: 8px; overflow: hidden"><img src="/_blob/a912d24fbdbf35d6816646dc94da1e9d" alt="遗计" style="width: 56px; height: 56px; display: block; object-fit: cover"><div style="position: absolute; inset: 0; border-radius: 8px; box-shadow: inset 0 0 0 1px rgba(102,178,255,0.62), inset 0 -16px 16px -12px rgba(0,0,0,0.6)"></div><div style="position: absolute; top: 0; left: 0; width: 13px; height: 13px; clip-path: polygon(0 0, 100% 0, 0 100%); background: #66B2FF"></div></div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 11.5px; color: #86838C">三档尺寸 88 / 56 / 42 · 品质缺角随尺寸缩放</span>
+<div style="display: flex; align-items: flex-end; gap: 14px">
+<div style="position: relative; width: 88px; height: 88px; border-radius: 12px; overflow: hidden"><img src="/_blob/0cffafa7440db805f02b12e84aaa819c" alt="铁剑在必得" style="width: 88px; height: 88px; display: block; object-fit: cover"><div style="position: absolute; inset: 0; border-radius: 12px; box-shadow: inset 0 0 0 1px rgba(255,158,69,0.62), inset 0 -22px 22px -16px rgba(0,0,0,0.6)"></div><div style="position: absolute; top: 0; left: 0; width: 18px; height: 18px; clip-path: polygon(0 0, 100% 0, 0 100%); background: #FF9E45"></div></div>
+<div style="position: relative; width: 56px; height: 56px; border-radius: 8px; overflow: hidden"><img src="/_blob/0cffafa7440db805f02b12e84aaa819c" alt="" style="width: 56px; height: 56px; display: block; object-fit: cover"><div style="position: absolute; inset: 0; border-radius: 8px; box-shadow: inset 0 0 0 1px rgba(255,158,69,0.62), inset 0 -16px 16px -12px rgba(0,0,0,0.6)"></div><div style="position: absolute; top: 0; left: 0; width: 13px; height: 13px; clip-path: polygon(0 0, 100% 0, 0 100%); background: #FF9E45"></div></div>
+<div style="position: relative; width: 42px; height: 42px; border-radius: 7px; overflow: hidden"><img src="/_blob/0cffafa7440db805f02b12e84aaa819c" alt="" style="width: 42px; height: 42px; display: block; object-fit: cover"><div style="position: absolute; inset: 0; border-radius: 7px; box-shadow: inset 0 0 0 1px rgba(255,158,69,0.62), inset 0 -12px 12px -9px rgba(0,0,0,0.6)"></div><div style="position: absolute; top: 0; left: 0; width: 10px; height: 10px; clip-path: polygon(0 0, 100% 0, 0 100%); background: #FF9E45"></div></div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 11.5px; color: #86838C">条目状态 · 默认 / 选中</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div style="display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 10px; background: #1A1A1F; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05)">
+<div style="position: relative; width: 40px; height: 40px; flex-shrink: 0; border-radius: 7px; overflow: hidden"><img src="/_blob/f9c59a105be9b39db0cd81d4f8c7a950" alt="" style="width: 40px; height: 40px; display: block; object-fit: cover"><div style="position: absolute; inset: 0; border-radius: 7px; box-shadow: inset 0 0 0 1px rgba(255,158,69,0.62)"></div><div style="position: absolute; top: 0; left: 0; width: 10px; height: 10px; clip-path: polygon(0 0, 100% 0, 0 100%); background: #FF9E45"></div></div>
+<div style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 13.5px; font-weight: 600">特效专家</span><span style="font-size: 12px; color: #8F8C95">攻速 <span style="font-family: var(--num); font-size: 13.5px; font-weight: 600; color: #72E0B4">80–240</span></span></div>
+</div>
+<div style="display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 10px; background: #26262D; box-shadow: inset 0 0 0 1px rgba(238,236,231,0.45)">
+<div style="position: relative; width: 40px; height: 40px; flex-shrink: 0; border-radius: 7px; overflow: hidden"><img src="/_blob/89b9cf1733c91aff2e78937a6f87f2bf" alt="" style="width: 40px; height: 40px; display: block; object-fit: cover"><div style="position: absolute; inset: 0; border-radius: 7px; box-shadow: inset 0 0 0 1px rgba(255,158,69,0.62)"></div><div style="position: absolute; top: 0; left: 0; width: 10px; height: 10px; clip-path: polygon(0 0, 100% 0, 0 100%); background: #FF9E45"></div></div>
+<div style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 13.5px; font-weight: 600">重装法师</span><span style="font-size: 12px; color: #8F8C95; white-space: nowrap">技能增强 <span style="font-family: var(--num); font-size: 13.5px; font-weight: 600; color: #72E0B4">2.8–5.6%</span></span></div>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 11.5px; color: #86838C">筛选控件 · 分段按钮与标签</span>
+<div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap">
+<div style="display: flex; gap: 2px; padding: 3px; background: #1A1A1F; border: 1px solid rgba(255,255,255,0.07); border-radius: 9px">
+<span style="height: 28px; padding: 0 10px; border-radius: 6px; display: flex; align-items: center; font-size: 12.5px; color: #A9A6AE">全部</span>
+<span style="height: 28px; padding: 0 10px; border-radius: 6px; display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; background: #2C2C33; color: #F2F0EB"><span style="width: 7px; height: 7px; border-radius: 1.5px; transform: rotate(45deg); background: #FF9E45"></span>橙色</span>
+<span style="height: 28px; padding: 0 10px; border-radius: 6px; display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: #A9A6AE"><span style="width: 7px; height: 7px; border-radius: 1.5px; transform: rotate(45deg); background: #B996FF"></span>紫色</span>
+</div>
+<span style="height: 26px; padding: 0 10px; border-radius: 13px; display: flex; align-items: center; font-size: 12px; color: #F2F0EB; background: rgba(238,236,231,0.1); border: 1px solid rgba(238,236,231,0.5); box-sizing: border-box">仅限远程</span>
+<span style="height: 26px; padding: 0 10px; border-radius: 13px; display: flex; align-items: center; font-size: 12px; color: #A9A6AE; border: 1px solid rgba(255,255,255,0.1); box-sizing: border-box">队伍唯一</span>
+</div>
+</div>
+</section>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":760}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>图鉴 · 游戏旁窄窗</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&amp;family=Barlow+Semi+Condensed:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0B0B0D;font-family:'Noto Sans SC','Microsoft YaHei UI',sans-serif;color:#EEECE7}
+:root{--num:'Barlow Semi Condensed','Noto Sans SC',sans-serif}
+button{font-family:inherit}
+.fy-input{background:transparent;border:0;outline:none;color:#EEECE7;font-family:inherit;font-size:13.5px;flex-grow:1;min-width:0}
+.fy-input::placeholder{color:#7A7780}
+.fy-input::-webkit-search-cancel-button{display:none}
+.fy-search:focus-within{border-color:rgba(238,236,231,0.45)!important;background:#202026!important}
+.fy-row:hover{background:rgba(255,255,255,0.03)!important}
+.fy-seg:hover,.fy-chip:hover{color:#F2F0EB!important}
+.fy-ghost:hover{background:#24242A!important;color:#F2F0EB!important}
+.fy-cap:hover{background:#1E1E23!important;color:#F2F0EB!important}
+.fy-close:hover{background:#C42B1C!important;color:#FFFFFF!important}
+.fy-scroll::-webkit-scrollbar{width:8px}
+.fy-scroll::-webkit-scrollbar-thumb{background:#2C2C33;border-radius:8px;border:2px solid transparent;background-clip:padding-box}
+.fy-scroll::-webkit-scrollbar-track{background:transparent}
+button:focus-visible{outline:2px solid rgba(238,236,231,0.7);outline-offset:1px}
+</style>
+</helmet>
+<div style="width: 400px; height: 820px; box-sizing: border-box; display: flex; flex-direction: column; background: #141417; border: 1px solid rgba(255,255,255,0.09); border-radius: 10px; overflow: hidden; font-family: 'Noto Sans SC', 'Microsoft YaHei UI', sans-serif; color: #EEECE7">
+
+<header style="height: 36px; flex-shrink: 0; display: flex; align-items: stretch; background: #0F0F12; border-bottom: 1px solid rgba(255,255,255,0.06)">
+<div style="display: flex; align-items: center; padding: 0 4px 0 12px">
+<svg width="16" height="16" viewBox="0 0 18 18" aria-label="福佑小助手" role="img"><path d="M9 1.5 16.5 9 9 16.5 1.5 9Z" fill="none" stroke="#EEECE7" stroke-width="1.5"></path><path d="M9 5.75 12.25 9 9 12.25 5.75 9Z" fill="#FF9E45"></path></svg>
+</div>
+<nav aria-label="主导航" style="display: flex; align-items: stretch">
+<button type="button" aria-current="page" style="position: relative; height: 36px; padding: 0 10px; border: 0; background: transparent; font-size: 12.5px; font-weight: 600; color: #F2F0EB; cursor: pointer">图鉴<span style="position: absolute; left: 10px; right: 10px; bottom: 0; height: 2px; border-radius: 2px; background: #F2F0EB"></span></button>
+<button type="button" class="fy-seg" style="height: 36px; padding: 0 10px; border: 0; background: transparent; font-size: 12.5px; color: #A9A6AE; cursor: pointer">提示</button>
+<button type="button" disabled title="规划中" style="height: 36px; padding: 0 10px; border: 0; background: transparent; font-size: 12.5px; color: #6E6B74; cursor: default">队友</button>
+</nav>
+<div style="flex-grow: 1"></div>
+<button type="button" class="fy-ghost" aria-label="窗口置顶" aria-pressed="true" style="width: 32px; border: 0; background: transparent; color: #EEECE7; display: flex; align-items: center; justify-content: center; cursor: pointer"><span style="width: 24px; height: 24px; border-radius: 5px; background: #1E1E23; display: flex; align-items: center; justify-content: center"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M9.5 1.75 14.25 6.5 11.5 7.75 8.75 10.5 8.25 13.25 2.75 7.75 5.5 7.25 8.25 4.5Z"></path><path d="M5.25 10.75 1.75 14.25"></path></svg></span></button>
+<button type="button" class="fy-cap" aria-label="最小化" style="width: 40px; border: 0; background: transparent; color: #A9A6AE; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M0 5.5h10" stroke="currentColor" stroke-width="1"></path></svg></button>
+<button type="button" class="fy-cap" aria-label="最大化" style="width: 40px; border: 0; background: transparent; color: #A9A6AE; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><rect x="0.5" y="0.5" width="9" height="9" rx="1.5" fill="none" stroke="currentColor" stroke-width="1"></rect></svg></button>
+<button type="button" class="fy-close" aria-label="关闭" style="width: 40px; border: 0; background: transparent; color: #A9A6AE; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M0.5 0.5l9 9M9.5 0.5l-9 9" stroke="currentColor" stroke-width="1"></path></svg></button>
+</header>
+
+<div style="padding: 12px 12px 8px">
+<label class="fy-search" style="height: 36px; box-sizing: border-box; display: flex; align-items: center; gap: 9px; padding: 0 8px 0 11px; background: #1C1C21; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #86838C; cursor: text">
+<svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.75"></circle><path d="M10.5 10.5 14 14"></path></svg>
+<input class="fy-input" type="search" aria-label="搜索福佑" placeholder="名称、效果或拼音首字母" value="{{text}}" onChange="{{onText}}">
+<kbd style="font-family: var(--num); font-size: 11px; line-height: 17px; color: #86838C; border: 1px solid rgba(255,255,255,0.12); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; white-space: nowrap">Ctrl K</kbd>
+</label>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 12px 8px">
+<div role="group" aria-label="品质" style="display: flex; gap: 1px; padding: 2px; background: #1A1A1F; border: 1px solid rgba(255,255,255,0.07); border-radius: 8px">
+<sc-for list="{{qSeg}}" as="o" hint-placeholder-count="4">
+<button type="button" class="fy-seg" onClick="{{o.pick}}" aria-pressed="{{o.on}}" aria-label="{{o.aria}}" style="height: 26px; padding: 0 9px; border: 0; border-radius: 6px; display: flex; align-items: center; gap: 5px; font-size: 12.5px; cursor: pointer; background: {{o.bg}}; color: {{o.c}}; font-weight: {{o.w}}"><sc-if value="{{o.hasDot}}" hint-placeholder-val="{{true}}"><span style="width: 6px; height: 6px; border-radius: 1px; transform: rotate(45deg); background: {{o.dot}}"></span></sc-if>{{o.label}}</button>
+</sc-for>
+</div>
+<div role="group" aria-label="范围" style="display: flex; gap: 1px; padding: 2px; background: #1A1A1F; border: 1px solid rgba(255,255,255,0.07); border-radius: 8px">
+<sc-for list="{{scopeSeg}}" as="o" hint-placeholder-count="3">
+<button type="button" class="fy-seg" onClick="{{o.pick}}" aria-pressed="{{o.on}}" style="height: 26px; padding: 0 9px; border: 0; border-radius: 6px; font-size: 12.5px; cursor: pointer; background: {{o.bg}}; color: {{o.c}}; font-weight: {{o.w}}">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+
+<div style="display: flex; align-items: center; gap: 6px; padding: 0 8px 8px 14px; font-size: 12px">
+<span style="color: #A9A6AE"><span style="font-family: var(--num); font-size: 14px; font-weight: 600; color: #EEECE7">{{count}}</span> 条</span>
+<span style="color: #6E6B74">示例 · 共 636</span>
+<div style="flex-grow: 1"></div>
+<button type="button" class="fy-ghost" style="height: 26px; padding: 0 8px; border: 0; border-radius: 6px; background: {{tagBtnBg}}; color: {{tagBtnC}}; font-size: 12px; display: flex; align-items: center; gap: 5px; cursor: pointer" onClick="{{cycleTag}}"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h12l-4.5 5.5V13L6.5 14V8.5Z"></path></svg>{{tagBtnLabel}}</button>
+<button type="button" class="fy-ghost" style="height: 26px; padding: 0 6px 0 8px; border: 0; border-radius: 6px; background: transparent; color: #A9A6AE; font-size: 12px; display: flex; align-items: center; gap: 3px; cursor: pointer">按品质<svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 6.5 8 10l3.5-3.5"></path></svg></button>
+</div>
+
+<div class="fy-scroll" role="list" aria-label="福佑列表" style="flex-grow: 1; min-height: 0; overflow-y: auto; padding: 6px 6px 16px 8px; display: flex; flex-direction: column; gap: 12px; border-top: 1px solid rgba(255,255,255,0.06)">
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="3">
+<sc-if value="{{g.show}}" hint-placeholder-val="{{true}}">
+<section style="display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; align-items: center; gap: 7px; padding: 4px 6px 4px">
+<span style="width: 6px; height: 6px; border-radius: 1px; transform: rotate(45deg); background: {{g.c}}"></span>
+<span style="font-size: 11.5px; font-weight: 600; color: {{g.c}}">{{g.label}}</span>
+<span style="font-family: var(--num); font-size: 12px; color: #86838C">{{g.count}}</span>
+</div>
+<sc-for list="{{g.items}}" as="it" hint-placeholder-count="3">
+<div role="listitem" style="border-radius: 8px; background: {{it.rowBg}}; box-shadow: {{it.rowRing}}">
+<button type="button" class="fy-row" onClick="{{it.pick}}" aria-expanded="{{it.on}}" style="width: 100%; display: flex; align-items: center; gap: 11px; padding: 7px 8px; border: 0; border-radius: 8px; background: transparent; text-align: left; cursor: pointer; color: #EEECE7">
+<div style="position: relative; width: 42px; height: 42px; flex-shrink: 0; border-radius: 7px; overflow: hidden; background: #0E0E11">
+<img src="{{it.icon}}" alt="" style="width: 42px; height: 42px; display: block; object-fit: cover">
+<div style="position: absolute; inset: 0; border-radius: 7px; box-shadow: inset 0 0 0 1px {{it.ring}}, inset 0 -12px 12px -9px rgba(0,0,0,0.6)"></div>
+<div style="position: absolute; top: 0; left: 0; width: 10px; height: 10px; clip-path: polygon(0 0, 100% 0, 0 100%); background: {{it.qc}}"></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px; min-width: 0; flex-grow: 1">
+<div style="display: flex; align-items: center; gap: 6px; min-width: 0">
+<span style="font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{it.name}}</span>
+<sc-if value="{{it.isExcl}}" hint-placeholder-val="{{false}}"><span style="flex-shrink: 0; font-size: 10.5px; line-height: 16px; padding: 0 5px; border-radius: 4px; background: #2A2A31; color: #B9B6BE">专属</span></sc-if>
+</div>
+<div style="display: flex; align-items: baseline; gap: 6px; min-width: 0; white-space: nowrap">
+<span style="font-size: 12px; color: #8F8C95; overflow: hidden; text-overflow: ellipsis">{{it.k0}}</span>
+<span style="flex-shrink: 0; font-family: var(--num); font-size: 14px; font-weight: 600; color: #72E0B4">{{it.v0}}</span>
+<sc-if value="{{it.hasMore}}" hint-placeholder-val="{{false}}"><span style="flex-shrink: 0; font-family: var(--num); font-size: 11.5px; line-height: 15px; padding: 0 4px; border-radius: 4px; background: #24242A; color: #A9A6AE">{{it.more}}</span></sc-if>
+</div>
+</div>
+<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#86838C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; transform: {{it.chev}}"><path d="M4.5 6.5 8 10l3.5-3.5"></path></svg>
+</button>
+<sc-if value="{{it.on}}" hint-placeholder-val="{{false}}">
+<div style="padding: 2px 12px 12px 61px; display: flex; flex-direction: column; gap: 10px">
+<p style="margin: 0; font-size: 13.5px; line-height: 1.75; color: #E4E2DC"><sc-for list="{{it.descSeg}}" as="s" hint-placeholder-count="5"><span style="color: {{s.c}}; font-family: {{s.f}}; font-size: {{s.s}}; font-weight: {{s.w}}">{{s.t}}</span></sc-for></p>
+<div style="display: flex; flex-direction: column">
+<sc-for list="{{it.stats}}" as="r" hint-placeholder-count="2">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 6px 0; border-top: 1px solid rgba(255,255,255,0.06)">
+<span style="font-size: 12px; color: #A9A6AE">{{r.k}}</span>
+<span style="display: flex; align-items: baseline; gap: 4px; white-space: nowrap"><span style="font-family: var(--num); font-size: 15px; font-weight: 600; color: #72E0B4">{{r.v}}</span><span style="font-size: 11.5px; color: #86838C">{{r.u}}</span></span>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; align-items: center; gap: 5px; flex-wrap: wrap">
+<span style="height: 22px; display: inline-flex; align-items: center; gap: 5px; padding: 0 7px; border-radius: 5px; font-size: 11.5px; font-weight: 600; background: {{it.qbg}}; color: {{it.qc}}">{{it.qlabel}}</span>
+<sc-for list="{{it.meta}}" as="m" hint-placeholder-count="1"><span style="height: 22px; display: inline-flex; align-items: center; padding: 0 7px; border-radius: 5px; background: #24242A; color: #B9B6BE; font-size: 11.5px">{{m}}</span></sc-for>
+<div style="flex-grow: 1"></div>
+<button type="button" class="fy-ghost" style="height: 24px; padding: 0 8px; border: 0; border-radius: 5px; background: transparent; color: #A9A6AE; font-size: 11.5px; display: flex; align-items: center; gap: 4px; cursor: pointer"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="5.25" y="5.25" width="8.5" height="8.5" rx="1.75"></rect><path d="M10.75 5.25V3.75a1.5 1.5 0 0 0-1.5-1.5H3.75a1.5 1.5 0 0 0-1.5 1.5v5.5a1.5 1.5 0 0 0 1.5 1.5h1.5"></path></svg>复制</button>
+</div>
+</div>
+</sc-if>
+</div>
+</sc-for>
+</section>
+</sc-if>
+</sc-for>
+<sc-if value="{{empty}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 56px 0">
+<div style="font-size: 14px; font-weight: 600">没有匹配的福佑</div>
+<div style="font-size: 12.5px; color: #86838C">换个关键词，或清除当前筛选。</div>
+<button type="button" class="fy-ghost" onClick="{{reset}}" style="margin-top: 6px; height: 28px; padding: 0 12px; border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; background: transparent; color: #EEECE7; font-size: 12px; cursor: pointer">清除筛选</button>
+</div>
+</sc-if>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":400,"height":820}}'>
+class Component extends DCLogic {
+  quality() {
+    return {
+      o: { label: '橙色', short: '橙', c: '#FF9E45', bg: 'rgba(255,158,69,0.13)', ring: 'rgba(255,158,69,0.62)' },
+      p: { label: '紫色', short: '紫', c: '#B996FF', bg: 'rgba(185,150,255,0.14)', ring: 'rgba(185,150,255,0.62)' },
+      b: { label: '蓝色', short: '蓝', c: '#66B2FF', bg: 'rgba(102,178,255,0.14)', ring: 'rgba(102,178,255,0.62)' }
+    };
+  }
+  data() {
+    const B = '/_blob/';
+    return [
+      { id: 'chuanyun', name: '一支穿云箭', py: 'yzcyj', q: 'o', scope: '通用', tags: [], icon: B + '2db92353b875f7561a8987ac6d13f577',
+        keys: [['魔法伤害', '15–30 ×等级']],
+        desc: [['技能命中敌方英雄时，向其释放蓄力箭矢，造成 '], ['15~30', 'n'], [' × 等级 魔法伤害。箭矢飞行 '], ['1500', 'n'], [' 码，伤害随飞行距离提升'], ['（受技能增强加成）', 'm'], ['。']],
+        stats: [['魔法伤害', '15 – 30', '× 等级'], ['飞行距离', '1500', '码']] },
+      { id: 'tiejian', name: '铁剑在必得', py: 'tjzbd', q: 'o', scope: '通用', tags: ['仅限远程'], icon: B + '0cffafa7440db805f02b12e84aaa819c',
+        keys: [['攻击距离', '200–400'], ['吸血', '+15%'], ['四项属性', '+25%']],
+        desc: [['攻击距离 +'], ['200~400', 'n'], ['，吸血 +'], ['15%', 'n'], ['；移速、攻击、生命、攻速 +'], ['25%', 'n'], ['。']],
+        stats: [['攻击距离', '200 – 400', ''], ['吸血', '+15', '%'], ['移速 / 攻击 / 生命 / 攻速', '+25', '%']] },
+      { id: 'fenlie', name: '超级分裂箭', py: 'cjflj', q: 'o', scope: '专属', tags: [], icon: B + '685a3e5c9fcc864af7b40d63bf4d9260',
+        keys: [['分裂箭伤害', '18–36%']],
+        desc: [['分裂箭伤害 +'], ['18~36%', 'n'], ['。']],
+        stats: [['分裂箭伤害', '18 – 36', '%']] },
+      { id: 'zidan', name: '让子弹飞', py: 'rzdf', q: 'o', scope: '专属', tags: [], icon: B + 'fcf16470d36d04b879c6e718fbb06fe0',
+        keys: [['蓄力箭伤害', '15–30%']],
+        desc: [['蓄力箭伤害 +'], ['15~30%', 'n'], ['。']],
+        stats: [['蓄力箭伤害', '15 – 30', '%']] },
+      { id: 'texiao', name: '特效专家', py: 'txzj', q: 'o', scope: '通用', tags: [], icon: B + 'f9c59a105be9b39db0cd81d4f8c7a950',
+        keys: [['攻速', '80–240']],
+        desc: [['攻击速度 +'], ['80~240', 'n'], ['。']],
+        stats: [['攻击速度', '80 – 240', '']] },
+      { id: 'zhongzhuang', name: '重装法师', py: 'zzfs', q: 'o', scope: '通用', tags: [], icon: B + '89b9cf1733c91aff2e78937a6f87f2bf',
+        keys: [['每千生命 技能增强', '2.8–5.6%']],
+        desc: [['每 '], ['1000', 'n'], [' 点生命值提供 '], ['2.8~5.6%', 'n'], [' 技能增强。']],
+        stats: [['每 1000 生命 · 技能增强', '2.8 – 5.6', '%']] },
+      { id: 'gongsu', name: '攻速鞋', py: 'gsx', q: 'p', scope: '通用', tags: [], icon: B + 'f27ddc9843bf18ac6d4e434e49288fa1',
+        keys: [['攻速', '9% × 移速'], ['命中移速', '10–20']],
+        desc: [['获得 '], ['9% × 移动速度', 'n'], [' 的攻击速度。攻击命中非建筑敌方单位时，获得 '], ['10~20', 'n'], [' 移动速度。']],
+        stats: [['攻击速度', '9% × 移速', ''], ['命中后移动速度', '10 – 20', '']] },
+      { id: 'shounue', name: '受虐狂', py: 'snk', q: 'p', scope: '通用', tags: [], icon: B + '7492e0fcc6d75131747b1f60dd807438',
+        keys: [['护盾', '12–24%']],
+        desc: [['获得护盾 '], ['12~24%', 'n'], ['。']],
+        stats: [['护盾', '12 – 24', '%']] },
+      { id: 'yiji', name: '遗计', py: 'yj', q: 'b', scope: '通用', tags: ['队伍唯一'], icon: B + 'a912d24fbdbf35d6816646dc94da1e9d',
+        keys: [['金币', '500–1000'], ['经验', '500']],
+        desc: [['阵亡时，自身和随机一名友方英雄获得 '], ['500~1000', 'n'], [' 金币和 '], ['500', 'n'], [' 经验，最多 '], ['8', 'n'], [' 次。']],
+        stats: [['金币', '500 – 1000', ''], ['经验', '500', ''], ['触发上限', '8', '次']] }
+    ];
+  }
+  seg(parts) {
+    return parts.map((p) => {
+      if (p[1] === 'n') return { t: p[0], c: '#72E0B4', w: '600', f: 'var(--num)', s: '15px' };
+      if (p[1] === 'm') return { t: p[0], c: '#86838C', w: '400', f: 'inherit', s: 'inherit' };
+      return { t: p[0], c: '#E4E2DC', w: '400', f: 'inherit', s: 'inherit' };
+    });
+  }
+  renderVals() {
+    const st = Object.assign({ q: 'all', scope: 'all', tag: '', text: '', sel: 'tiejian' }, this.state || {});
+    const Q = this.quality();
+    const all = this.data();
+    const text = st.text.trim().toLowerCase();
+    const hay = (d) => (d.name + ' ' + d.py + ' ' + d.keys.map((k) => k.join(' ')).join(' ') + ' ' + d.desc.map((s) => s[0]).join('')).toLowerCase();
+    const list = all.filter((d) => (st.q === 'all' || d.q === st.q) && (st.scope === 'all' || d.scope === st.scope) && (!st.tag || d.tags.indexOf(st.tag) >= 0) && (!text || hay(d).indexOf(text) >= 0));
+    const deco = (d) => {
+      const q = Q[d.q];
+      const on = d.id === st.sel;
+      return {
+        id: d.id, name: d.name, icon: d.icon, qc: q.c, qbg: q.bg, ring: q.ring, qlabel: q.label, on: on,
+        k0: d.keys[0][0], v0: d.keys[0][1], hasMore: d.keys.length > 1, more: '+' + (d.keys.length - 1),
+        isExcl: d.scope === '专属',
+        rowBg: on ? '#1F1F25' : 'transparent',
+        rowRing: on ? 'inset 0 0 0 1px rgba(238,236,231,0.28)' : 'none',
+        chev: on ? 'rotate(180deg)' : 'none',
+        meta: [d.scope].concat(d.tags),
+        descSeg: this.seg(d.desc),
+        stats: d.stats.map((s) => ({ k: s[0], v: s[1], u: s[2] || '' })),
+        pick: () => this.setState({ sel: on ? '' : d.id })
+      };
+    };
+    const groups = ['o', 'p', 'b'].map((k) => {
+      const items = list.filter((d) => d.q === k).map(deco);
+      return { label: Q[k].label, c: Q[k].c, count: items.length, items: items, show: items.length > 0 };
+    });
+    const mk = (key, opts) => opts.map((o) => {
+      const on = st[key] === o.v;
+      return { label: o.label, aria: o.aria || o.label, dot: o.dot || '', hasDot: !!o.dot, on: on, bg: on ? '#2C2C33' : 'transparent', c: on ? '#F2F0EB' : '#A9A6AE', w: on ? '600' : '400', pick: () => this.setState({ [key]: o.v }) };
+    });
+    const tags = ['', '仅限远程', '仅限近战', '队伍唯一'];
+    const ti = tags.indexOf(st.tag);
+    return {
+      groups: groups, count: list.length, empty: list.length === 0, text: st.text,
+      onText: (e) => this.setState({ text: e.target.value }),
+      reset: () => this.setState({ q: 'all', scope: 'all', tag: '', text: '' }),
+      qSeg: mk('q', [{ v: 'all', label: '全部' }, { v: 'o', label: '橙', aria: '橙色', dot: Q.o.c }, { v: 'p', label: '紫', aria: '紫色', dot: Q.p.c }, { v: 'b', label: '蓝', aria: '蓝色', dot: Q.b.c }]),
+      scopeSeg: mk('scope', [{ v: 'all', label: '全部' }, { v: '通用', label: '通用' }, { v: '专属', label: '专属' }]),
+      tagBtnLabel: st.tag || '标签',
+      tagBtnBg: st.tag ? 'rgba(238,236,231,0.1)' : 'transparent',
+      tagBtnC: st.tag ? '#F2F0EB' : '#A9A6AE',
+      cycleTag: () => this.setState({ tag: tags[(ti + 1) % tags.length] })
+    };
+  }
+}
+</script>
+</body>
+</html>

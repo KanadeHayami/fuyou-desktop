@@ -1,0 +1,32 @@
+[
+  {
+    "id": "10001",
+    "name": "铁剑在必得",
+    "html": "攻击距离固定为 <font color='#83d18a'>[200~400]</font>，吸血 <font color='#83d18a'>+15%</font>，移动速度、总攻击力、生命值、攻击速度 <font color='#83d18a'>+25%</font>。"
+  },
+  {
+    "id": "10018",
+    "name": "受虐狂",
+    "html": "单次承伤超过 <font color='#83d18a'>80</font> 时获得层数， <font color='#83d18a'>10</font> 层时获得 <font color='#83d18a'>[12~24]%</font> 最大生命值护盾并刷新基础技能。 <font color='#8e8e8e'>（CD: 60 秒，非重生阵亡时刷新）</font>"
+  },
+  {
+    "id": "10101",
+    "name": "重装法师",
+    "html": "每拥有 <font color='#83d18a'>1000</font> 生命值，技能增强 <font color='#83d18a'>+[2.8~5.6]%</font>（最高 <font color='#83d18a'>20</font> 层） 。"
+  },
+  {
+    "id": "10006",
+    "name": "攻速鞋",
+    "html": "获得 <font color='#83d18a'>9%×移动速度</font> 的攻击速度。 攻击命中非建筑敌方单位时，获得 <font color='#83d18a'>[10~20]</font> 移动速度。<font color='#8e8e8e'>（持续 5 秒，上限 70 层）</font>"
+  },
+  {
+    "id": "10116",
+    "name": "一支穿云箭",
+    "html": "技能命中敌方英雄时，向其释放蓄力箭矢，造成 <font color='#83d18a'>[15~30]×等级</font> 魔法伤害，箭矢飞行 <font color='#83d18a'>1500</font> 码，箭矢每飞行 <font color='#83d18a'>100</font> 码，伤害提升 <font color='#83d18a'>8%</font> <font color='#8e8e8e'>（受技能增强加成）</font> 。"
+  },
+  {
+    "id": "100001",
+    "name": "魔霭诅咒强化",
+    "html": "魔霭诅咒持续时间延长 <font color='#83d18a'>10</font> 秒，伤害 <font color='#83d18a'>+[15~30]</font>。"
+  }
+]

@@ -1,0 +1,34 @@
+type WindowState = { pinned: boolean; maximized: boolean; layout?: 'landscape' | 'portrait' };
+type OverlayState = import('../shared/overlay-layout').OverlayState;
+interface Window { api?: {
+  liveState(): Promise<import('../shared/live').LiveState>;
+  startLive(options: { intervalMs: number; hudOnly: boolean }): Promise<import('../shared/live').LiveState>;
+  stopLive(): Promise<import('../shared/live').LiveState>;
+  clearLive(): Promise<import('../shared/live').LiveState>;
+  editLive(value: { session: number; key: string; mode?: import('../shared/live').LiveMode; remove?: boolean }): Promise<import('../shared/live').LiveState>;
+  onLive(callback: (state: import('../shared/live').LiveState) => void): () => void;
+  rosterList(): Promise<import('../shared/roster').RosterEntry[]>;
+  rosterImport(): Promise<import('../shared/roster').RosterScan | null>;
+  rosterSave(row: unknown): Promise<import('../shared/roster').RosterEntry[]>;
+  rosterRemove(id: string): Promise<import('../shared/roster').RosterEntry[]>;
+  action(action: string): void; state(): Promise<WindowState>; onState(callback: (state: WindowState) => void): () => void; copy(text: string): Promise<void>;
+  gameState(): Promise<import('../shared/game').GameSnapshot>;
+  gameSetup(): Promise<import('../shared/game').GameSetup>;
+  installGame(choose?: boolean): Promise<import('../shared/game').GameSetup>;
+  retryGame(): Promise<void>;
+  onGame(callback: (state: import('../shared/game').GameSnapshot) => void): () => void;
+  captureState(): Promise<import('../shared/capture').CaptureState>;
+  setMovement(session: number, value: number | null): Promise<import('../shared/capture').CaptureState>;
+  overlayState(): Promise<OverlayState>;
+  showOverlay(): Promise<OverlayState>;
+  hideOverlay(): Promise<OverlayState>;
+  toggleOverlay(): void;
+  moveOverlay(dx: number, dy: number): void;
+  onOverlay(callback: (state: OverlayState) => void): () => void;
+  setCaptureValue(session: number, id: string, index: number, value: number | null): Promise<import('../shared/capture').CaptureState>;
+  startCapture(options: { intervalMs: number; region: import('../shared/capture').Region }): Promise<import('../shared/capture').CaptureState>;
+  stopCapture(): Promise<import('../shared/capture').CaptureState>;
+  clearCapture(): Promise<import('../shared/capture').CaptureState>;
+  confirmCapture(index: number, id: string): Promise<import('../shared/capture').CaptureState>;
+  onCapture(callback: (state: import('../shared/capture').CaptureState) => void): () => void;
+} }

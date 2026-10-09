@@ -1,0 +1,27 @@
+.roster-scan{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:16px;margin-top:12px}.roster-scan>img{width:100%;max-height:300px;object-fit:contain;border-radius:8px;background:var(--bg-title)}.roster-reminder{padding:12px;border:1px solid var(--key);border-radius:8px}.roster-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.roster textarea{font:inherit;color:var(--tx-1);background:var(--bg-field);border:1px solid var(--line-strong);border-radius:6px;padding:10px;width:100%;resize:vertical}.roster-raw,.roster-note{white-space:pre-wrap}.roster-records{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:12px}.roster-records article{padding:12px;border:1px solid var(--line);border-radius:8px;min-width:0}.roster-records .game-heading{justify-content:flex-start}.roster-thumb{width:64px;height:64px;object-fit:contain;border-radius:6px;background:var(--bg-title)}.roster .game-buttons button{white-space:normal;overflow-wrap:anywhere}.roster .game-buttons button[aria-pressed=true]{background:var(--bg-selected);border-color:var(--ring-selected)}@media(max-width:699px){.roster-scan,.roster-fields,.roster-records{grid-template-columns:1fr}.roster-scan>img{max-height:200px}.roster>.game-box>.game-heading{flex-wrap:wrap}}
+
+.roster .game-heading>div{min-width:0}.roster h2,.roster p{overflow-wrap:anywhere}
+
+.roster-records{grid-template-columns:minmax(0,1fr)}
+.roster-record-main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start;margin-bottom:12px}
+.roster-identity{display:flex;gap:14px;align-items:center;min-width:0}
+.roster-identity>div{min-width:0}.roster-thumb{flex-shrink:0}
+.roster-identity h2{margin:0;line-height:1.6}.roster-identity p{margin:4px 0 0}
+.roster-badge{display:inline-block;font-size:12px;font-weight:700;line-height:1.6;padding:2px 8px;border:1px solid currentColor;border-radius:5px;white-space:nowrap;vertical-align:middle}
+.roster .roster-red{color:var(--warn)}.roster .roster-black{color:var(--q2)}
+.roster-note-block{min-width:0;border-left:1px solid var(--line-strong);padding-left:24px}
+.roster-note-label{font-size:12px;color:var(--tx-3)}
+.roster .roster-note{margin:6px 0 0;font-size:20px;font-weight:700;line-height:1.6;color:var(--tx-1)}
+.roster .roster-note.is-empty{font-size:14px;font-weight:400;color:var(--tx-3)}
+@media(max-width:699px){.roster-record-main{grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:12px}.roster-identity{flex-wrap:wrap;gap:8px}.roster-thumb{width:44px;height:44px}.roster-note-block{padding-left:12px}.roster .roster-note{font-size:18px}}
+
+.roster-guide{margin-top:12px;padding:12px;border:1px solid var(--line-strong);border-radius:8px;background:var(--bg-title)}
+.roster-guide summary{cursor:pointer;color:var(--tx-1);font-weight:600}
+.roster-guide-body{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;align-items:center;margin-top:16px}
+.roster-template{margin:0;text-align:center}.roster-template-caption{display:block;font-size:12px;color:var(--key);margin-bottom:8px}
+.roster-template-card{border:1px dashed var(--key);border-radius:12px;padding:16px 10px;display:flex;flex-direction:column;align-items:center;gap:10px;background:var(--bg-panel)}
+.roster-template-avatar{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--bg-raised);border:1px solid var(--line-strong);color:var(--tx-3)}
+.roster-template-card strong{font-size:16px}.roster-template-id{color:var(--q1);border-bottom:1px solid var(--q1);padding:0 4px 4px}
+.roster-template small,.roster-template figcaption{font-size:12px;color:var(--tx-3)}.roster-template figcaption{margin-top:8px}
+.roster-guide-copy{min-width:0}.roster-guide-copy h3{margin:0 0 8px}.roster-guide-copy ol{padding-left:20px;color:var(--tx-2);line-height:1.9;margin:0}.roster-guide-copy p{font-size:12px;margin-bottom:0}
+@media(max-width:699px){.roster-guide-body{grid-template-columns:minmax(0,1fr);gap:16px}.roster-template{width:200px;max-width:100%;justify-self:center}}
